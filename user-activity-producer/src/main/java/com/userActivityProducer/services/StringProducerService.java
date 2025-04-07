@@ -1,5 +1,6 @@
 package com.userActivityProducer.services;
 
+import com.userActivityProducer.DTO.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -10,10 +11,10 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class StringProducerService {
 
-    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, User> kafkaTemplate;
 
-    public void sendMessage(String message){
-        kafkaTemplate.send("str-users", message).whenComplete((result, ex)->{
+    public void sendMessage(User user){
+        kafkaTemplate.send("actividad-usuario", user).whenComplete((result, ex)->{
             if (ex != null){
                 log.error("Error al enviar el mensaje: {}", ex.getMessage());
             }

@@ -1,5 +1,6 @@
 package com.userActivityProducer.controller;
 
+import com.userActivityProducer.DTO.User;
 import com.userActivityProducer.services.StringProducerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,8 +18,8 @@ public class StringProducerController {
     private final StringProducerService stringProducerService;
 
     @PostMapping
-    public ResponseEntity<?> sendMessage(@RequestBody String message){
-        stringProducerService.sendMessage(message);
+    public ResponseEntity<?> sendMessage(@RequestBody User user){
+        stringProducerService.sendMessage(user);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
