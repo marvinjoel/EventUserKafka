@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/producer")
+@RequestMapping("/api/v1")
 public class StringProducerController {
 
     private final StringProducerService stringProducerService;
 
-    @PostMapping
+    @PostMapping("/user")
     public ResponseEntity<?> sendMessage(@RequestBody User user){
         stringProducerService.sendMessage(user);
         return ResponseEntity.status(HttpStatus.CREATED).build();
