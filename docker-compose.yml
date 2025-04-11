@@ -10,8 +10,9 @@ services:
       SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
       SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
       SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
-      depends_on:
-        - kafka
+    depends_on:
+      - kafka
+      - zookeeper
 
   user-activity-producer:
     build: ./user-activity-producer/
@@ -22,6 +23,7 @@ services:
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
     depends_on:
       - kafka
+      - zookeeper
 
 
   zookeeper:
