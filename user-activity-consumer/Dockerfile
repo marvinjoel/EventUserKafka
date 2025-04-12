@@ -1,8 +1,8 @@
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:21.0.6_7-jdk
 
 WORKDIR /app
 
-COPY user-activity-consumer/target/*.jar app.jar
+COPY target/*.jar app.jar
 
 EXPOSE 8080
 
