@@ -1,4 +1,37 @@
 services:
+
+  user-activity-consumer:
+    build: ./user-activity-consumer/
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      SPRING_CONSUMER_PORT: ${SPRING_CONSUMER_PORT}
+    networks:
+      - broker-kafka
+    depends_on:
+      - kafka
+      - zookeeper
+
+  user-activity-producer:
+    build: ./user-activity-producer/
+    ports:
+      - "8000:8000"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      SPRING_PRODUCER_PORT: ${SPRING_PRODUCER_PORT}
+    networks:
+      - broker-kafka
+    depends_on:
+      - kafka
+      - zookeeper
+
+
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     networks:
