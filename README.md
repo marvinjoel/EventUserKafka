@@ -40,3 +40,20 @@ Para ejecutar el proyecto utilizando Docker, asegúrate de tener Docker y Docker
     ```bash
     docker-compose down
     ```
+
+## Interactuando con el Productor (Envío de Eventos de Usuario)
+
+Para enviar un evento de registro de usuario al productor a través de una herramienta HTTP como Postman, debes realizar una solicitud `POST` a la siguiente URL (ajusta el puerto si lo configuraste de manera diferente):
+```
+http://localhost:8000/api/v1/user
+```
+
+El cuerpo de la solicitud debe ser de tipo `application/json` y debe contener los siguientes campos:
+
+```json
+{
+    "firstname": "Nombre del usuario",
+    "lastname": "Apellido del usuario",
+    "email": "correo_electronico@dominio.com",
+    "password": "contraseña_del_usuario"
+}
